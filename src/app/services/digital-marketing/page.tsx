@@ -83,24 +83,24 @@ export default function DigitalMarketingPage() {
                         </div>
 
                         {/* Funnel Visual */}
-                        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 overflow-hidden">
                             <h3 className="text-center font-bold text-slate-900 mb-8">The Solution: Funnel Architecture</h3>
 
                             <div className="space-y-2 max-w-sm mx-auto">
                                 {/* Top */}
                                 <div className="h-16 bg-purple-200 rounded-t-lg flex items-center justify-center text-purple-900 font-bold relative">
                                     Traffic (Ads/SEO)
-                                    <span className="absolute -right-24 text-xs text-slate-400 w-20 text-left">Cold Audience</span>
+                                    <span className="hidden md:block absolute -right-24 text-xs text-slate-400 w-20 text-left">Cold Audience</span>
                                 </div>
                                 {/* Middle */}
                                 <div className="h-14 bg-purple-400 mx-4 flex items-center justify-center text-white font-bold relative">
                                     Lead Capture
-                                    <span className="absolute -right-20 text-xs text-slate-500 w-20 text-left">Emails/SMS</span>
+                                    <span className="hidden md:block absolute -right-20 text-xs text-slate-500 w-20 text-left">Emails/SMS</span>
                                 </div>
                                 {/* Bottom */}
                                 <div className="h-12 bg-purple-600 mx-8 rounded-b-lg flex items-center justify-center text-white font-bold relative">
                                     Sales
-                                    <span className="absolute -right-16 text-xs text-slate-700 w-20 text-left">Revenue</span>
+                                    <span className="hidden md:block absolute -right-16 text-xs text-slate-700 w-20 text-left">Revenue</span>
                                 </div>
                             </div>
 

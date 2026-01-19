@@ -56,8 +56,8 @@ export default function Header() {
 
                                 <div
                                     className={`absolute top-[80%] left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 py-2 transition-all duration-300 ease-out origin-top ${servicesOpen
-                                            ? 'opacity-100 translate-y-0 visible'
-                                            : 'opacity-0 -translate-y-2 invisible'
+                                        ? 'opacity-100 translate-y-0 visible'
+                                        : 'opacity-0 -translate-y-2 invisible'
                                         }`}
                                 >
                                     {services.map((service) => (
