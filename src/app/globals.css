@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Override default container to fixed 1170px max-width */
+@utility container {
+  width: 100%;
+  max-width: 1170px;
+  margin-inline: auto;
+  padding-inline: 1.5rem; /* px-6 equivalent default for safety */
+}
+
+@utility glass-panel {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility dark-grid-bg {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+@utility gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500;
+}
+
+@utility gradient-text-light {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200;
 }
