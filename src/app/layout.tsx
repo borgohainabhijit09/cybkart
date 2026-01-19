@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cybkartglobal.com'),
   title: "CYBKART GLOBAL | Enterprise Digital Systems & AI Automation",
   description: "Professional digital systems agency specializing in AI automation, web development, and digital solutions for US businesses. Data-driven, system-focused approach.",
   keywords: "AI automation, chatbot systems, web development, e-commerce, digital marketing, US business solutions",
