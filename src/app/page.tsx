@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   ArrowRight,
   Brain,
@@ -20,10 +23,15 @@ import {
   Clock
 } from 'lucide-react';
 import CTASection from '@/components/CTASection';
+import BookingModal from '@/components/BookingModal';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
+      <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
       {/* 
         HERO SECTION 
         Style: Dark Enterprise Tech
@@ -54,10 +62,13 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/20">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/20 cursor-pointer"
+                >
                   Book Strategy Call
                   <ArrowRight className="w-5 h-5" />
-                </Link>
+                </button>
                 <Link href="/case-scenarios" className="inline-flex items-center justify-center gap-2 bg-white/5 text-white border border-white/10 px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-all">
                   View Case Studies
                 </Link>
