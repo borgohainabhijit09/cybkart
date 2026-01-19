@@ -51,30 +51,33 @@ export default function Header() {
                             >
                                 <button className="flex items-center space-x-1 text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm h-20">
                                     <span>Services</span>
-                                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
+                                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
                                 </button>
 
-                                {servicesOpen && (
-                                    <div className="absolute top-[80%] left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 py-2 animate-in fade-in slide-in-from-top-2 duration-200 block">
-                                        {services.map((service) => (
-                                            <Link
-                                                key={service.href}
-                                                href={service.href}
-                                                className="block px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                                            >
-                                                {service.name}
-                                            </Link>
-                                        ))}
-                                        <div className="px-2 pt-2 pb-1">
-                                            <Link
-                                                href="/services"
-                                                className="block px-4 py-3 text-center text-xs font-semibold text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-                                            >
-                                                View All Services
-                                            </Link>
-                                        </div>
+                                <div
+                                    className={`absolute top-[80%] left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 py-2 transition-all duration-300 ease-out origin-top ${servicesOpen
+                                            ? 'opacity-100 translate-y-0 visible'
+                                            : 'opacity-0 -translate-y-2 invisible'
+                                        }`}
+                                >
+                                    {services.map((service) => (
+                                        <Link
+                                            key={service.href}
+                                            href={service.href}
+                                            className="block px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                                        >
+                                            {service.name}
+                                        </Link>
+                                    ))}
+                                    <div className="px-2 pt-2 pb-1">
+                                        <Link
+                                            href="/services"
+                                            className="block px-4 py-3 text-center text-xs font-semibold text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                                        >
+                                            View All Services
+                                        </Link>
                                     </div>
-                                )}
+                                </div>
                             </div>
 
                             <Link href="/case-scenarios" className="text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm">
