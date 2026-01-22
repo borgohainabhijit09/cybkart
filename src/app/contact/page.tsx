@@ -70,13 +70,13 @@ export default function ContactPage() {
                                 <h4 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">Direct Channels</h4>
                                 <div className="space-y-4">
                                     <div className="grid sm:grid-cols-2 gap-4">
-                                        <a href="mailto:hello@cybkartglobal.com" className="flex items-center gap-3 p-4 rounded-lg bg-white/5 hover:bg-white/10 hover:scale-[1.02] transition-all border border-white/5 group">
+                                        <a href="mailto:info@cybkartglobal.com" className="flex items-center gap-3 p-4 rounded-lg bg-white/5 hover:bg-white/10 hover:scale-[1.02] transition-all border border-white/5 group">
                                             <Mail className="w-5 h-5 text-blue-400 group-hover:text-blue-300" />
-                                            <span className="font-semibold text-sm">hello@cybkartglobal.com</span>
+                                            <span className="font-semibold text-sm">info@cybkartglobal.com</span>
                                         </a>
                                         <a href="tel:8446991255" className="flex items-center gap-3 p-4 rounded-lg bg-white/5 hover:bg-white/10 hover:scale-[1.02] transition-all border border-white/5 group">
                                             <Phone className="w-5 h-5 text-green-400 group-hover:text-green-300" />
-                                            <span className="font-semibold text-sm">844-699-1255</span>
+                                            <span className="font-semibold text-sm">844-699-1255 (Toll Free)</span>
                                         </a>
                                     </div>
                                     <div className="flex items-center gap-3 p-4 rounded-lg bg-white/5 border border-white/5">

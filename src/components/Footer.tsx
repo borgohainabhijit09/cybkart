@@ -65,11 +65,11 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm">
                             <li className="flex items-start space-x-3">
                                 <Mail className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                <div><a href="mailto:hello@cybkartglobal.com" className="hover:text-blue-400 transition-colors">hello@cybkartglobal.com</a></div>
+                                <div><a href="mailto:info@cybkartglobal.com" className="hover:text-blue-400 transition-colors">info@cybkartglobal.com</a></div>
                             </li>
                             <li className="flex items-start space-x-3">
                                 <Phone className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                <div><a href="tel:8446991255" className="hover:text-blue-400 transition-colors">844-699-1255</a></div>
+                                <div><a href="tel:8446991255" className="hover:text-blue-400 transition-colors">844-699-1255 (Toll Free)</a></div>
                             </li>
                             <li className="flex items-start space-x-3">
                                 <MapPin className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />

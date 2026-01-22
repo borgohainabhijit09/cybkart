@@ -49,15 +49,15 @@ export default function PrivacyPage() {
 
                     <h3 className="text-2xl font-bold text-slate-900 mt-12 mb-4">5. Your Rights</h3>
                     <p className="mb-6 text-slate-600">
-                        Depending on your location, you may have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at <a href="mailto:hello@cybkartglobal.com" className="text-blue-600 hover:underline">hello@cybkartglobal.com</a>.
+                        Depending on your location, you may have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at <a href="mailto:info@cybkartglobal.com" className="text-blue-600 hover:underline">info@cybkartglobal.com</a>.
                     </p>
 
                     <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 mt-12">
                         <h4 className="font-bold text-slate-900 mb-2">Contact Us</h4>
                         <p className="text-slate-600 text-sm">
                             If you have any questions about this Privacy Policy, please contact us:<br />
-                            Email: hello@cybkartglobal.com<br />
-                            Phone: 844-699-1255
+                            Email: info@cybkartglobal.com<br />
+                            Phone: 844-699-1255 (Toll Free)
                         </p>
                     </div>
                 </div>

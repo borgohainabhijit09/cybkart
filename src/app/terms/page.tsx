@@ -56,7 +56,7 @@ export default function TermsPage() {
                     <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 mt-12">
                         <h4 className="font-bold text-slate-900 mb-2">Questions?</h4>
                         <p className="text-slate-600 text-sm">
-                            For legal inquiries, please contact us at <a href="mailto:hello@cybkartglobal.com" className="text-blue-600 hover:underline">hello@cybkartglobal.com</a>.
+                            For legal inquiries, please contact us at <a href="mailto:info@cybkartglobal.com" className="text-blue-600 hover:underline">info@cybkartglobal.com</a>.
                         </p>
                     </div>
                 </div>
