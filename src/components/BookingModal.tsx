@@ -1,7 +1,7 @@
 'use client';
 
-import { X } from 'lucide-react';
-import { useEffect } from 'react';
+import { X, Phone, MessageCircle, Mail, Lock, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -9,9 +9,30 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+    const [formData, setFormData] = useState({
+        businessName: '',
+        businessType: '',
+        location: '',
+        contactPreference: 'phone',
+        phone: '',
+        email: '',
+        budgetConfirmed: false
+    });
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
+            setIsSubmitted(false); // Reset on open
+            setFormData({
+                businessName: '',
+                businessType: '',
+                location: '',
+                contactPreference: 'phone',
+                phone: '',
+                email: '',
+                budgetConfirmed: false
+            });
         } else {
             document.body.style.overflow = 'unset';
         }
@@ -20,33 +41,189 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         };
     }, [isOpen]);
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Here you would typically send data to an API
+        console.log('Form submitted:', formData);
+        setIsSubmitted(true);
+    };
+
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity"
                 onClick={onClose}
             ></div>
-            <div className="relative w-full max-w-4xl h-[80vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
-                <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-white z-10">
-                    <span className="font-bold text-slate-900">Book Strategy Call</span>
+
+            {/* Modal Content */}
+            <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 my-auto border border-slate-100">
+                <div className="flex items-center justify-end p-4 absolute top-0 right-0 z-10">
                     <button
                         onClick={onClose}
-                        className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                        className="p-2 bg-white/80 hover:bg-slate-100 rounded-full transition-colors text-slate-500 hover:text-slate-700"
                     >
-                        <X className="w-5 h-5 text-slate-500" />
+                        <X className="w-5 h-5" />
                     </button>
                 </div>
-                <div className="flex-1 w-full relative">
-                    <iframe
-                        src="https://calendly.com/cybkartglobal/30min?hide_gdpr_banner=1"
-                        width="100%"
-                        height="100%"
-                        frameBorder="0"
-                        title="Select a Date & Time - Calendly"
-                    ></iframe>
-                </div>
+
+                {!isSubmitted ? (
+                    <div className="p-8 pt-10">
+                        <div className="text-center mb-8">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-3">Want a website like this?</h2>
+                            <p className="text-slate-600 text-sm leading-relaxed">
+                                You’ve just seen a demo of how your website could look.
+                                Share a few quick details and we’ll guide you on the best option for your business.
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-2">Business Name</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="Enter your business name"
+                                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all bg-slate-50 text-slate-900"
+                                        value={formData.businessName}
+                                        onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-2">Business Type</label>
+                                    <div className="relative">
+                                        <select
+                                            required
+                                            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all bg-slate-50 appearance-none text-slate-900"
+                                            value={formData.businessType}
+                                            onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
+                                        >
+                                            <option value="" disabled>Select an option</option>
+                                            <option value="contractor">Contractor / Home Services</option>
+                                            <option value="landscaping">Landscaping</option>
+                                            <option value="clinic">Clinic / Professional Services</option>
+                                            <option value="local">Local Business</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-2">City & State</label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="City, State"
+                                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all bg-slate-50 text-slate-900"
+                                    value={formData.location}
+                                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-3">Preferred Contact Method</label>
+                                <div className="grid grid-cols-3 gap-3 mb-4">
+                                    {[
+                                        { id: 'phone', label: 'Phone', icon: Phone },
+                                        { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle },
+                                        { id: 'email', label: 'Email', icon: Mail }
+                                    ].map((method) => (
+                                        <label
+                                            key={method.id}
+                                            className={`
+                                                flex flex-col items-center justify-center p-3 rounded-xl border cursor-pointer transition-all
+                                                ${formData.contactPreference === method.id
+                                                    ? 'border-blue-500 bg-blue-50 text-blue-700'
+                                                    : 'border-slate-200 hover:border-blue-200 hover:bg-slate-50 text-slate-600'}
+                                            `}
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="contactPreference"
+                                                value={method.id}
+                                                className="hidden"
+                                                checked={formData.contactPreference === method.id}
+                                                onChange={(e) => setFormData({ ...formData, contactPreference: e.target.value })}
+                                            />
+                                            <method.icon className="w-5 h-5 mb-1" />
+                                            <span className="text-xs font-medium">{method.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                                        <input
+                                            type="tel"
+                                            required
+                                            placeholder="(555) 123-4567"
+                                            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all bg-slate-50 text-slate-900"
+                                            value={formData.phone}
+                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="you@company.com"
+                                            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all bg-slate-50 text-slate-900"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+                                <input
+                                    type="checkbox"
+                                    className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                                    checked={formData.budgetConfirmed}
+                                    onChange={(e) => setFormData({ ...formData, budgetConfirmed: e.target.checked })}
+                                />
+                                <span className="text-sm font-medium text-slate-700">My budget is around $999 – $2,500</span>
+                            </label>
+
+                            <button
+                                type="submit"
+                                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+                            >
+                                👉 Show Me My Website Options
+                            </button>
+
+                            <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
+                                <Lock className="w-3 h-3" /> No spam. No obligation. Just clear next steps.
+                            </div>
+                        </form>
+                    </div>
+                ) : (
+                    <div className="p-12 text-center flex flex-col items-center justify-center h-full min-h-[400px]">
+                        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 animate-in zoom-in duration-300">
+                            <CheckCircle2 className="w-10 h-10" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Request Received!</h3>
+                        <p className="text-slate-600 mb-8 max-w-xs mx-auto">
+                            Thanks for sharing your details. One of our strategy experts will be in touch shortly with options tailored to your business.
+                        </p>
+                        <button
+                            onClick={onClose}
+                            className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors cursor-pointer"
+                        >
+                            Close Window
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

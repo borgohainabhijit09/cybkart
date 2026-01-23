@@ -1,330 +1,488 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
 import {
+    Phone,
     ArrowRight,
     CheckCircle2,
-    Clock,
-    Users,
-    TrendingUp,
+    XCircle,
     Zap,
-    Shield,
-    Target,
-    MessageSquare,
-    Globe,
-    Calendar,
-    BarChart3,
-    ChevronDown,
+    ShieldCheck,
+    Smartphone,
+    Clock,
+    MousePointerClick,
     Play,
-    Sparkles,
+    Layout,
+    Hammer,
+    Briefcase,
+    Store,
+    ChevronDown,
+    Menu,
+    X,
+    TrendingUp,
+    MapPin,
+    Globe,
     DollarSign,
-    Rocket,
-    Award,
-    Lock,
-    HeadphonesIcon
+    Calendar,
+    Star,
+    MessageCircle
 } from 'lucide-react';
+import Link from 'next/link';
 import BookingModal from '@/components/BookingModal';
 
 export default function CybkartGlobalLanding() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [demosClicked, setDemosClicked] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-    const toggleFaq = (index: number) => {
-        setOpenFaq(openFaq === index ? null : index);
+    const scrollToDemos = () => {
+        const element = document.getElementById('demo-section');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const handleDemoClick = () => {
+        setDemosClicked(true);
     };
 
     return (
-        <>
-            <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <div className="font-sans text-slate-900 antialiased bg-white selection:bg-blue-100 selection:text-blue-900">
+            {/* Header/Nav (Simple) */}
+            <header className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+                    <div className="flex items-center bg-slate-900 px-3 py-1.5 rounded-lg shadow-sm hover:bg-slate-800 transition-colors">
+                        <img src="/images/logo.png" alt="CYBKART Global" className="h-12 w-auto" />
+                    </div>
 
-            {/* 1️⃣ HERO SECTION */}
-            <section className="relative bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] pt-32 pb-24 overflow-hidden">
-                <div className="absolute inset-0 dark-grid-bg opacity-20"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F172A]/50 to-[#0F172A]"></div>
+                    {/* Desktop CTA */}
+                    <div className="hidden md:flex items-center gap-6">
+                        <a href="tel:8446991255" className="font-semibold text-slate-600 hover:text-blue-600 transition-colors cursor-pointer">
+                            844-699-1255 (Toll Free)
+                        </a>
+                        <button
+                            onClick={scrollToDemos}
+                            className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 cursor-pointer"
+                        >
+                            See Demo Websites
+                        </button>
+                    </div>
 
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        {/* Left: Copy */}
-                        <div>
-                            <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-500/20 px-4 py-2 rounded-full mb-6">
-                                <Sparkles className="w-4 h-4 text-blue-400" />
-                                <span className="text-blue-300 text-sm font-semibold">Automation & Growth Systems</span>
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden text-slate-900 cursor-pointer"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X /> : <Menu />}
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {mobileMenuOpen && (
+                    <div className="md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-4">
+                        <a href="tel:8446991255" className="block w-full text-center py-3 bg-slate-100 rounded-lg font-bold text-slate-800 cursor-pointer flex items-center justify-center gap-2">
+                            <Phone className="w-4 h-4" /> Call 844-699-1255
+                        </a>
+                        <button
+                            onClick={() => { setIsBookingModalOpen(true); setMobileMenuOpen(false); }}
+                            className="block w-full py-3 bg-emerald-600 text-white rounded-lg font-bold shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                        >
+                            <Calendar className="w-4 h-4" /> Book Strategy Call
+                        </button>
+                        <button
+                            onClick={() => { scrollToDemos(); setMobileMenuOpen(false); }}
+                            className="block w-full py-3 bg-blue-600 text-white rounded-lg font-bold shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                        >
+                            <Layout className="w-4 h-4" /> See Demo Websites
+                        </button>
+                    </div>
+                )}
+            </header>
+
+            {/* 🟢 SECTION 1: HERO (REDESIGNED) */}
+            <section className="pt-24 pb-10 md:pt-32 md:pb-16 bg-slate-50 relative overflow-hidden">
+                {/* Background Decor */}
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob"></div>
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+                    <div className="absolute top-[20%] left-[20%] w-[400px] h-[400px] bg-indigo-100/40 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-4000"></div>
+                </div>
+
+                <div className="container mx-auto px-6 relative z-10 text-center max-w-5xl">
+                    <div className="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-full text-slate-600 text-sm font-semibold mb-8 shadow-sm animate-fade-in-up hover:scale-105 transition-transform cursor-default">
+                        <span className="relative flex h-2.5 w-2.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        Accepting New Clients for 2026
+                    </div>
+
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-slate-900 tracking-tight leading-[1.05] mb-8 drop-shadow-sm">
+                        Websites That Turn <br className="hidden md:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Visitors Into Callers.</span>
+                    </h1>
+
+                    <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                        Stop losing leads to outdated designs. We build professional, high-converting websites for service businesses in <span className="text-slate-900 font-bold underline decoration-blue-400/50 decoration-4 underline-offset-4">7 days or less.</span>
+                        <span className="block mt-4 text-blue-600 font-bold bg-blue-50/50 inline-block px-4 py-1 rounded-full border border-blue-100">
+                            ✨ Packages starting at just $499
+                        </span>
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-12">
+                        <button
+                            onClick={scrollToDemos}
+                            className="w-full sm:w-auto px-10 py-5 bg-blue-600 text-white text-lg font-bold rounded-2xl hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-600/30 hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                        >
+                            View Live Demos <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button
+                            onClick={() => setIsBookingModalOpen(true)}
+                            className="w-full sm:w-auto px-10 py-5 bg-white text-slate-900 border border-slate-200 text-lg font-bold rounded-2xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-xl transition-all flex items-center justify-center gap-3 group cursor-pointer"
+                        >
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors">
+                                <Calendar className="w-4 h-4 fill-current" />
                             </div>
+                            Book Strategy Call
+                        </button>
+                    </div>
 
-                            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                                Stop Losing Leads.{' '}
-                                <span className="gradient-text">Start Scaling.</span>
-                            </h1>
-
-                            <p className="text-xl text-slate-300 leading-relaxed mb-8">
-                                We build AI-powered automation systems for US service businesses—so you can focus on growth, not manual work.
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                                <button
-                                    onClick={() => setIsModalOpen(true)}
-                                    className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40"
-                                >
-                                    Book a Free Strategy Call <ArrowRight className="w-5 h-5" />
-                                </button>
-                                <a
-                                    href="#how-it-works"
-                                    className="inline-flex items-center justify-center gap-2 bg-slate-800 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-slate-700 transition-all border border-slate-700"
-                                >
-                                    See How It Works
-                                </a>
-                            </div>
-
-                            <p className="text-sm text-slate-400">
-                                ✓ No obligation · ✓ 20–30 minutes · ✓ Clear next steps
-                            </p>
+                    <div className="flex items-center justify-center gap-8 text-sm font-medium text-slate-500 opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 className="w-5 h-5 text-blue-600" /> No Monthly Retainers
                         </div>
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 className="w-5 h-5 text-blue-600" /> 100% Mobile Optimized
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        {/* Right: Visual */}
-                        <div className="relative">
-                            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-2xl">
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-3 bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                                        <MessageSquare className="w-8 h-8 text-blue-400" />
-                                        <div>
-                                            <div className="text-white font-semibold">AI Lead Capture</div>
-                                            <div className="text-slate-400 text-sm">24/7 automated responses</div>
-                                        </div>
-                                        <CheckCircle2 className="w-6 h-6 text-green-400 ml-auto" />
+
+
+            {/* 🟢 SECTION 2: TRUST SNAPSHOT (FAST CONFIDENCE) */}
+            <section className="bg-slate-900 py-16 border-t border-slate-800">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto bg-slate-800/50 rounded-3xl p-8 md:p-10 border border-slate-700/50 shadow-2xl relative overflow-hidden">
+                        {/* Subtle background glow */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+                        <h2 className="text-3xl font-bold text-white mb-10 text-center relative z-10">Why businesses choose us</h2>
+
+                        <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 relative z-10">
+                            <div className="flex items-center gap-5 group">
+                                <div className="w-12 h-12 rounded-xl bg-slate-700/50 border border-slate-600 flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-300 shadow-lg">
+                                    <MapPin className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <div className="text-white font-bold text-lg">Sheridan, WY</div>
+                                    <div className="text-slate-400 text-sm">US-Based Company</div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-5 group">
+                                <div className="w-12 h-12 rounded-xl bg-slate-700/50 border border-slate-600 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-500 transition-all duration-300 shadow-lg">
+                                    <Globe className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <div className="text-white font-bold text-lg">US & Canada</div>
+                                    <div className="text-slate-400 text-sm">Serving Clients</div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-5 group">
+                                <div className="w-12 h-12 rounded-xl bg-slate-700/50 border border-slate-600 flex items-center justify-center text-amber-400 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white group-hover:border-amber-500 transition-all duration-300 shadow-lg">
+                                    <Zap className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <div className="text-white font-bold text-lg">7–10 Days</div>
+                                    <div className="text-slate-400 text-sm">Fast Turnaround</div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-5 group">
+                                <div className="w-12 h-12 rounded-xl bg-slate-700/50 border border-slate-600 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-500 transition-all duration-300 shadow-lg">
+                                    <DollarSign className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <div className="text-white font-bold text-lg">Transparent Pricing</div>
+                                    <div className="text-slate-400 text-sm">No Hidden Fees</div>
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-2 pt-6 border-t border-slate-700/50 flex justify-center">
+                                <div className="flex items-center gap-5 group">
+                                    <div className="w-12 h-12 rounded-xl bg-slate-700/50 border border-slate-600 flex items-center justify-center text-purple-400 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-500 transition-all duration-300 shadow-lg">
+                                        <Smartphone className="w-6 h-6" />
                                     </div>
-                                    <div className="flex items-center gap-3 bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                                        <Calendar className="w-8 h-8 text-purple-400" />
-                                        <div>
-                                            <div className="text-white font-semibold">Auto Booking</div>
-                                            <div className="text-slate-400 text-sm">No back-and-forth emails</div>
-                                        </div>
-                                        <CheckCircle2 className="w-6 h-6 text-green-400 ml-auto" />
-                                    </div>
-                                    <div className="flex items-center gap-3 bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                                        <BarChart3 className="w-8 h-8 text-emerald-400" />
-                                        <div>
-                                            <div className="text-white font-semibold">CRM Integration</div>
-                                            <div className="text-slate-400 text-sm">All data in one place</div>
-                                        </div>
-                                        <CheckCircle2 className="w-6 h-6 text-green-400 ml-auto" />
+                                    <div>
+                                        <div className="text-white font-bold text-lg">100% Mobile-Friendly</div>
+                                        <div className="text-slate-400 text-sm">Optimized for Conversion</div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-600/20 rounded-full blur-3xl"></div>
-                            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-600/20 rounded-full blur-3xl"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* 2️⃣ WHO THIS IS FOR */}
+
+
+            {/* 🟢 SECTION 3: WHO THIS IS FOR (FILTER BAD LEADS) */}
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Built for Growing US Businesses
-                        </h2>
-                        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                            If you're spending too much time on manual tasks instead of serving clients, we can help.
-                        </p>
-                    </div>
+                    <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                        {/* Perfect For */}
+                        <div className="bg-emerald-50/50 rounded-2xl p-8 border border-emerald-100">
+                            <h3 className="text-2xl font-bold text-emerald-900 mb-6 flex items-center gap-3">
+                                <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+                                Perfect for:
+                            </h3>
+                            <ul className="space-y-4">
+                                <li className="flex items-start gap-4">
+                                    <div className="w-6 h-6 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</div>
+                                    <div>
+                                        <span className="font-bold text-slate-900 block text-lg">Contractors & Home Services</span>
+                                        <span className="text-emerald-800/80">Landscapers, plumbers, electricians, roofers</span>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4">
+                                    <div className="w-6 h-6 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</div>
+                                    <div>
+                                        <span className="font-bold text-slate-900 block text-lg">Clinics & Consultants</span>
+                                        <span className="text-emerald-800/80">Medical, legal, financial, coaching</span>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4">
+                                    <div className="w-6 h-6 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</div>
+                                    <div>
+                                        <span className="font-bold text-slate-900 block text-lg">Local Businesses</span>
+                                        <span className="text-emerald-800/80">Companies relying on referrals & local Google search</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {[
-                            {
-                                icon: Users,
-                                title: 'Service Businesses',
-                                pain: 'Losing leads to slow response times',
-                                outcome: 'Instant AI responses, 24/7 lead capture'
-                            },
-                            {
-                                icon: HeadphonesIcon,
-                                title: 'Clinics & Coaches',
-                                pain: 'Manual booking back-and-forth',
-                                outcome: 'Automated scheduling, zero admin work'
-                            },
-                            {
-                                icon: Globe,
-                                title: 'E-commerce Brands',
-                                pain: 'Low website conversion rates',
-                                outcome: 'High-converting sites that sell'
-                            },
-                            {
-                                icon: Target,
-                                title: 'Consultants & Agencies',
-                                pain: 'Too many disconnected tools',
-                                outcome: 'One unified automation system'
-                            }
-                        ].map((item, i) => (
-                            <div key={i} className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all">
-                                <item.icon className="w-12 h-12 text-blue-600 mb-4" />
-                                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                                <p className="text-slate-600 text-sm mb-3">
-                                    <span className="font-semibold text-red-600">Pain:</span> {item.pain}
-                                </p>
-                                <p className="text-slate-600 text-sm">
-                                    <span className="font-semibold text-green-600">Outcome:</span> {item.outcome}
-                                </p>
-                            </div>
-                        ))}
+                        {/* Not Ideal For */}
+                        <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 opacity-90">
+                            <h3 className="text-2xl font-bold text-slate-700 mb-6 flex items-center gap-3">
+                                <XCircle className="w-8 h-8 text-slate-500" />
+                                Not ideal for:
+                            </h3>
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-4 text-slate-600">
+                                    <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xs">✕</div>
+                                    <span className="text-lg">Free or DIY websites</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-slate-600">
+                                    <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xs">✕</div>
+                                    <span className="text-lg">Large enterprise portals</span>
+                                </li>
+                                <li className="flex items-center gap-4 text-slate-600">
+                                    <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xs">✕</div>
+                                    <span className="text-lg">Complex e-commerce stores (for now)</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3️⃣ THE PROBLEMS WE FIX */}
+            {/* 🟢 SECTION 4: DEMO FIRST (YOUR SECRET WEAPON) */}
+            <section id="demo-section" className="py-24 bg-slate-900 text-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-blue-600/10 radial-gradient"></div>
+
+                <div className="container mx-auto px-6 relative z-10 text-center">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                        See How Your Website Could Look
+                    </h2>
+                    <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-12">
+                        Before you talk to anyone, see real demo websites built for service businesses like yours.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                        {[
+                            { name: 'Service Business Demo', icon: Briefcase, url: 'https://mediumpurple-hedgehog-134737.hostingersite.com/' },
+                            { name: 'Contractor Demo', icon: Hammer, url: 'https://mediumpurple-hedgehog-134737.hostingersite.com/' },
+                            { name: 'Small Business Demo', icon: Store, url: 'https://mediumpurple-hedgehog-134737.hostingersite.com/' },
+                        ].map((demo, i) => (
+                            <a
+                                key={i}
+                                href={demo.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={handleDemoClick}
+                                className={`
+                                    block text-center group relative p-8 rounded-xl border-2 transition-all duration-300 cursor-pointer no-underline
+                                    ${demosClicked
+                                        ? 'border-blue-500 bg-blue-900/30'
+                                        : 'border-slate-700 bg-slate-800/50 hover:border-blue-400 hover:bg-slate-800'}
+                                `}
+                            >
+                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs py-1 px-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    Click to View
+                                </div>
+                                <demo.icon className="w-12 h-12 mx-auto mb-4 text-blue-400 group-hover:text-white transition-colors" />
+                                <h3 className="font-bold text-lg text-white">{demo.name}</h3>
+                                <div className="mt-4 flex items-center justify-center gap-2 text-sm text-blue-300 group-hover:text-white">
+                                    <Play className="w-4 h-4 fill-current" /> Preview Live Site
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* Reveal after click */}
+                    <div className={`transition-all duration-700 overflow-hidden ${demosClicked ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto border border-white/10">
+                            <h3 className="text-2xl font-bold mb-4">Like what you see?</h3>
+                            <p className="text-slate-300 mb-8">
+                                These are real examples of the quality we deliver. Let's discuss your specific needs.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                <button
+                                    onClick={() => setIsBookingModalOpen(true)}
+                                    className="w-full sm:w-auto px-8 py-4 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 cursor-pointer"
+                                >
+                                    <Calendar className="w-5 h-5" /> Book Strategy Call
+                                </button>
+                                <button
+                                    onClick={() => setIsBookingModalOpen(true)}
+                                    className="w-full sm:w-auto px-8 py-4 bg-white/10 text-white border border-white/20 font-bold rounded-lg hover:bg-white/20 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    <MessageCircle className="w-5 h-5" /> Message Us
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {!demosClicked && (
+                        <p className="text-slate-500 text-sm animate-pulse">
+                            👆 Click a button above to unlock the demo preview
+                        </p>
+                    )}
+                </div>
+            </section>
+
+            {/* 🟢 SECTION 5: PRICING (REMOVE CONFUSION) */}
+
+            {/* 🟢 SECTION 5: PRICING (REMOVE CONFUSION) */}
             <section className="py-24 bg-slate-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            The Problems We Fix
-                        </h2>
-                        <p className="text-xl text-slate-600">
-                            Real business issues. Clear solutions.
-                        </p>
+                        <h2 className="text-4xl font-bold text-slate-900 mb-4">Simple, Transparent Pricing</h2>
+                        <p className="text-xl text-slate-600">Everything you need to get online and start generating leads.</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        {[
-                            { problem: 'Missed leads from slow response times', impact: 'Lost revenue every day' },
-                            { problem: 'Hours wasted on manual follow-ups', impact: 'No time for actual work' },
-                            { problem: 'Website that doesn\'t convert visitors', impact: 'Wasted ad spend' },
-                            { problem: 'Too many disconnected tools', impact: 'Data chaos, no clarity' },
-                            { problem: 'No automated booking system', impact: 'Email ping-pong hell' },
-                            { problem: 'Can\'t scale without hiring more staff', impact: 'Growth bottleneck' }
-                        ].map((item, i) => (
-                            <div key={i} className="bg-white p-6 rounded-lg border border-slate-200 hover:border-red-300 transition-all">
-                                <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                                    <div>
-                                        <p className="text-slate-900 font-semibold mb-2">{item.problem}</p>
-                                        <p className="text-slate-600 text-sm italic">→ {item.impact}</p>
-                                    </div>
+                    <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                        {/* Starter Package */}
+                        <div className="relative group">
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                            <div className="relative bg-white rounded-2xl p-8 md:p-10 border border-slate-100 shadow-2xl">
+                                <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-bl-xl rounded-tr-lg uppercase tracking-wider">
+                                    Best Value
                                 </div>
+
+                                <h3 className="text-2xl font-bold text-slate-900 mb-2">Starter Website</h3>
+                                <div className="flex items-baseline gap-2 mb-6">
+                                    <span className="text-5xl font-extrabold text-slate-900">$499</span>
+                                    <span className="text-slate-500 font-medium">/ one-time</span>
+                                </div>
+                                <p className="text-slate-600 mb-8 pb-8 border-b border-slate-100">
+                                    Perfect for service businesses ready to upgrade from social media or DIY sites.
+                                </p>
+
+                                <ul className="space-y-4 mb-8">
+                                    {[
+                                        'Up to 3 Custom Pages',
+                                        'Mobile-First Responsiveness',
+                                        'Click-to-Call & Lead Forms',
+                                        'Basic SEO Setup & Indexing',
+                                        '7–10 Day Delivery',
+                                        '30 Days of Free Support'
+                                    ].map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3">
+                                            <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                                                <CheckCircle2 className="w-4 h-4" />
+                                            </div>
+                                            <span className="text-slate-700 font-medium">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <button
+                                    onClick={() => setIsBookingModalOpen(true)}
+                                    className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 cursor-pointer"
+                                >
+                                    Book Strategy Call <ArrowRight className="w-4 h-4" />
+                                </button>
+                                <p className="text-center text-xs text-slate-400 mt-4">No monthly fees. No hidden costs.</p>
                             </div>
-                        ))}
+                        </div>
+
+                        {/* Custom / Growth */}
+                        <div className="p-8 md:p-10 bg-white rounded-2xl border border-slate-200 hover:border-blue-300 transition-all">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Growth & Custom</h3>
+                            <p className="text-slate-600 mb-8">
+                                Need more than just a website? We build full automation ecosystems.
+                            </p>
+
+                            <ul className="space-y-4 mb-8">
+                                {[
+                                    'Custom Web App Development',
+                                    'CRM & Booking Integrations',
+                                    'AI Chatbot Implementation',
+                                    'Advanced SEO & Content Strategy',
+                                    'Multi-Location Support'
+                                ].map((feature, i) => (
+                                    <li key={i} className="flex items-center gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                            <CheckCircle2 className="w-4 h-4" />
+                                        </div>
+                                        <span className="text-slate-700 font-medium">{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="mt-auto">
+                                <div className="text-slate-900 font-bold text-xl mb-1">Custom Quote</div>
+                                <div className="text-slate-500 text-sm mb-6">Tailored to your specific goals</div>
+
+                                <button
+                                    onClick={() => setIsBookingModalOpen(true)}
+                                    className="w-full py-4 bg-white text-slate-900 border-2 border-slate-200 font-bold rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all cursor-pointer"
+                                >
+                                    Contact for Custom Quote
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 4️⃣ OUR SOLUTION */}
+
+            {/* 🟢 SECTION 6: HOW IT WORKS (KEEP IT SIMPLE) */}
             <section className="py-24 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Our System-Based Solutions
-                        </h2>
-                        <p className="text-xl text-slate-600">
-                            Not just tools. Complete systems that work together.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {[
-                            {
-                                icon: MessageSquare,
-                                name: 'AI Chatbots & Lead Automation',
-                                replaces: 'Manual lead qualification, slow email responses',
-                                delivers: '24/7 instant responses, qualified leads in your CRM, zero manual work',
-                                color: 'blue'
-                            },
-                            {
-                                icon: Globe,
-                                name: 'Conversion-Focused Websites',
-                                replaces: 'Generic templates, slow-loading sites',
-                                delivers: 'Fast, mobile-optimized sites built to convert visitors into customers',
-                                color: 'purple'
-                            },
-                            {
-                                icon: Calendar,
-                                name: 'Automated Booking & CRM',
-                                replaces: 'Email back-and-forth, manual calendar management',
-                                delivers: 'One-click booking, automated reminders, integrated payment',
-                                color: 'emerald'
-                            },
-                            {
-                                icon: Zap,
-                                name: 'Business Process Automation',
-                                replaces: 'Repetitive manual tasks, disconnected workflows',
-                                delivers: 'Automated workflows, integrated systems, time saved daily',
-                                color: 'orange'
-                            }
-                        ].map((solution, i) => (
-                            <div key={i} className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:shadow-xl transition-all">
-                                <solution.icon className={`w-12 h-12 text-${solution.color}-600 mb-4`} />
-                                <h3 className="text-2xl font-bold text-slate-900 mb-4">{solution.name}</h3>
-                                <div className="space-y-3">
-                                    <div>
-                                        <p className="text-sm font-semibold text-slate-500 mb-1">REPLACES:</p>
-                                        <p className="text-slate-700">{solution.replaces}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-semibold text-slate-500 mb-1">DELIVERS:</p>
-                                        <p className="text-slate-900 font-semibold">{solution.delivers}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 5️⃣ HOW IT WORKS */}
-            <section id="how-it-works" className="py-24 bg-slate-50">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            How It Works
-                        </h2>
-                        <p className="text-xl text-slate-600">
-                            Simple 4-step process. Clear timeline. No surprises.
-                        </p>
+                        <h2 className="text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
+                        <p className="text-xl text-slate-600">That's it.</p>
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
                         {[
-                            {
-                                step: '01',
-                                title: 'Diagnose',
-                                description: 'We audit your current setup, identify bottlenecks, and map your ideal workflow.',
-                                timeline: 'Week 1',
-                                icon: Target
-                            },
-                            {
-                                step: '02',
-                                title: 'Design',
-                                description: 'Custom system blueprint tailored to your business. You approve before we build.',
-                                timeline: 'Week 1-2',
-                                icon: Award
-                            },
-                            {
-                                step: '03',
-                                title: 'Build',
-                                description: 'We build, integrate, and test your automation system. You review at each milestone.',
-                                timeline: 'Week 2-4',
-                                icon: Rocket
-                            },
-                            {
-                                step: '04',
-                                title: 'Optimize',
-                                description: 'Launch, monitor, and refine based on real data. Ongoing support included.',
-                                timeline: 'Week 4+',
-                                icon: TrendingUp
-                            }
+                            { step: '1', title: 'View a demo', icon: Layout },
+                            { step: '2', title: 'Quick discussion', icon: Phone },
+                            { step: '3', title: 'We build & deliver', icon: Hammer },
+                            { step: '4', title: 'You start getting leads', icon: TrendingUp },
                         ].map((item, i) => (
-                            <div key={i} className="relative">
-                                <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all h-full">
-                                    <div className="text-5xl font-bold text-blue-600/20 mb-4">{item.step}</div>
-                                    <item.icon className="w-10 h-10 text-blue-600 mb-4" />
-                                    <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                                    <p className="text-slate-600 mb-4">{item.description}</p>
-                                    <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
-                                        <Clock className="w-4 h-4" />
-                                        {item.timeline}
-                                    </div>
+                            <div key={i} className="text-center relative">
+                                <div className="w-20 h-20 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-6 relative z-10">
+                                    <span className="text-3xl font-bold text-blue-600">{item.step}</span>
                                 </div>
+                                <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
                                 {i < 3 && (
-                                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-200"></div>
+                                    <div className="hidden md:block absolute top-10 left-1/2 w-full h-0.5 bg-slate-100 -z-0"></div>
                                 )}
                             </div>
                         ))}
@@ -332,284 +490,119 @@ export default function CybkartGlobalLanding() {
                 </div>
             </section>
 
-            {/* 6️⃣ PROOF & CREDIBILITY */}
-            <section className="py-24 bg-white">
+            {/* 🟢 SECTION 7: WHY WE’RE DIFFERENT (POSITIONING) */}
+            <section className="py-24 bg-slate-50 overflow-hidden">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            See It In Action
-                        </h2>
-                        <p className="text-xl text-slate-600">
-                            Real systems. Real results.
-                        </p>
-                    </div>
-
-                    <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                        {/* Demo Preview */}
-                        <div className="bg-slate-900 rounded-2xl p-8 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
-                            <div className="relative z-10">
-                                <div className="flex items-center justify-center h-64 bg-slate-800/50 rounded-lg border border-slate-700 mb-4">
-                                    <div className="text-center">
-                                        <Play className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-                                        <p className="text-white font-semibold">Watch Demo</p>
-                                        <p className="text-slate-400 text-sm">See our AI chatbot in action</p>
-                                    </div>
-                                </div>
-                                <h3 className="text-white font-bold text-xl mb-2">AI Lead Capture Demo</h3>
-                                <p className="text-slate-300">Watch how our chatbot qualifies leads and books appointments automatically.</p>
-                            </div>
-                        </div>
-
-                        {/* Mini Case Scenario */}
-                        <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-                            <div className="mb-6">
-                                <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                                    <CheckCircle2 className="w-4 h-4" />
-                                    Case Study
-                                </div>
-                                <h3 className="text-2xl font-bold text-slate-900 mb-2">Wellness Clinic</h3>
-                                <p className="text-slate-600">Los Angeles, CA</p>
-                            </div>
-
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span className="text-red-600 font-bold">❌</span>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-slate-900">Before:</p>
-                                        <p className="text-slate-600 text-sm">Missing 40% of leads, 3 hours/day on booking emails</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <span className="text-green-600 font-bold">✓</span>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-slate-900">After:</p>
-                                        <p className="text-slate-600 text-sm">100% lead response rate, zero manual booking, 15 hours/week saved</p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-6">
-                                    <p className="text-blue-900 font-semibold mb-2">Result:</p>
-                                    <p className="text-blue-700">+$8,400/month revenue increase in 90 days</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Tool Stack */}
-                    <div className="mt-16 text-center">
-                        <p className="text-slate-500 text-sm font-semibold mb-6">TRUSTED TECHNOLOGY STACK</p>
-                        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-                            {['OpenAI', 'Zapier', 'Calendly', 'Stripe', 'HubSpot', 'Twilio'].map((tool, i) => (
-                                <div key={i} className="text-slate-400 font-bold text-lg">{tool}</div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* 7️⃣ WHY CYBKART GLOBAL */}
-            <section className="py-24 bg-slate-900 text-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                            Why CYBKART GLOBAL?
-                        </h2>
-                        <p className="text-xl text-slate-300">
-                            We're different. Here's how.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                        {[
-                            {
-                                icon: Zap,
-                                title: 'Systems > Tools',
-                                description: 'We build complete workflows, not just install plugins. Everything works together.'
-                            },
-                            {
-                                icon: Lock,
-                                title: 'No Lock-Ins',
-                                description: 'You own everything. No proprietary platforms. Leave anytime (you won\'t want to).'
-                            },
-                            {
-                                icon: DollarSign,
-                                title: 'Transparent Pricing',
-                                description: 'Fixed-scope projects or monthly retainers. No hidden fees. Clear ROI projections.'
-                            },
-                            {
-                                icon: Target,
-                                title: 'Built for US Businesses',
-                                description: 'US time zones. English-first. We understand your market and compliance needs.'
-                            }
-                        ].map((item, i) => (
-                            <div key={i} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-blue-500 transition-all">
-                                <item.icon className="w-10 h-10 text-blue-400 mb-4" />
-                                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                                <p className="text-slate-300">{item.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 8️⃣ OFFER SECTION */}
-            <section className="py-24 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                            Get a Free Automation Audit
-                        </h2>
-                        <p className="text-xl mb-8 text-blue-100">
-                            We'll analyze your current setup and show you exactly where you're losing time and money.
-                        </p>
-
-                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8">
-                            <h3 className="text-2xl font-bold mb-6">What You Get:</h3>
-                            <div className="grid md:grid-cols-2 gap-4 text-left">
+                    <div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
+                        <div className="w-full md:w-1/2">
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+                                We Build Websites That Are <span className="text-blue-600">Meant to Convert</span>
+                            </h2>
+                            <ul className="space-y-6">
                                 {[
-                                    'Complete workflow analysis',
-                                    'Bottleneck identification',
-                                    'Custom automation roadmap',
-                                    'ROI projections',
-                                    'Tool stack recommendations',
-                                    'Priority action items'
+                                    'Built for real businesses, not templates',
+                                    'Designed to turn visitors into callers',
+                                    'No long forms, no distractions',
+                                    'Optimized for Google & mobile users'
                                 ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
-                                        <span>{item}</span>
-                                    </div>
+                                    <li key={i} className="flex items-center gap-4">
+                                        <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
+                                            <CheckCircle2 className="w-6 h-6" />
+                                        </div>
+                                        <span className="text-lg md:text-xl font-medium text-slate-800">{item}</span>
+                                    </li>
                                 ))}
-                            </div>
+                            </ul>
                         </div>
-
-                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
-                            <p className="font-semibold mb-2">This is NOT for:</p>
-                            <p className="text-blue-100">
-                                ❌ Businesses looking for quick fixes<br />
-                                ❌ DIY enthusiasts who want to build it themselves<br />
-                                ❌ Companies not ready to invest in growth
-                            </p>
-                        </div>
-
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="inline-flex items-center gap-2 bg-white text-blue-600 px-10 py-5 rounded-lg font-bold text-xl hover:bg-blue-50 transition-all shadow-2xl"
-                        >
-                            Claim Your Free Audit <ArrowRight className="w-6 h-6" />
-                        </button>
-
-                        <p className="mt-6 text-blue-100 text-sm">
-                            Limited to 5 audits per month · No credit card required
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* 9️⃣ FAQ */}
-            <section className="py-24 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Frequently Asked Questions
-                        </h2>
-                        <p className="text-xl text-slate-600">
-                            Everything you need to know
-                        </p>
-                    </div>
-
-                    <div className="max-w-3xl mx-auto space-y-4">
-                        {[
-                            {
-                                question: 'What\'s the typical investment range?',
-                                answer: 'Projects typically range from $3,000–$15,000 depending on complexity. AI chatbot systems start at $3,500. Full website + automation systems range $8,000–$15,000. We also offer monthly retainers starting at $1,500/month for ongoing optimization and support.'
-                            },
-                            {
-                                question: 'How long does implementation take?',
-                                answer: 'Most projects are completed in 3–6 weeks. Simple chatbot setups can be live in 1–2 weeks. Complex multi-system integrations may take 6–8 weeks. We provide a detailed timeline during the strategy call.'
-                            },
-                            {
-                                question: 'What tools and platforms do you use?',
-                                answer: 'We use best-in-class tools: OpenAI for AI, Zapier/Make for automation, Calendly/Cal.com for booking, Stripe for payments, HubSpot/Pipedrive for CRM, and Next.js for websites. We choose based on your needs, not vendor kickbacks.'
-                            },
-                            {
-                                question: 'Do I need to maintain this myself?',
-                                answer: 'No. We offer maintenance packages starting at $500/month that include monitoring, updates, and optimization. Or, we can train your team to manage it. You choose what works best.'
-                            },
-                            {
-                                question: 'How do you handle data security?',
-                                answer: 'We follow SOC 2 and GDPR compliance standards. All data is encrypted in transit and at rest. We use enterprise-grade tools with 99.9% uptime SLAs. We can sign NDAs and BAAs for healthcare clients.'
-                            },
-                            {
-                                question: 'What about time zones and communication?',
-                                answer: 'We operate in US time zones (EST/PST). You\'ll have a dedicated project manager available via Slack, email, or scheduled calls. Weekly progress updates are standard. Emergency support available for critical issues.'
-                            },
-                            {
-                                question: 'Can you integrate with my existing tools?',
-                                answer: 'Yes. We specialize in integrations. Whether it\'s your CRM, email platform, payment processor, or custom software—we can connect it. We\'ll audit your current stack during the discovery phase.'
-                            },
-                            {
-                                question: 'What if I\'m not happy with the results?',
-                                answer: 'We work in milestones with approval at each stage. You see progress before we move forward. If we don\'t meet agreed-upon deliverables, we\'ll make it right or refund the milestone payment. Your success is our success.'
-                            }
-                        ].map((faq, i) => (
-                            <div key={i} className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-                                <button
-                                    onClick={() => toggleFaq(i)}
-                                    className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-100 transition-colors"
-                                >
-                                    <span className="font-bold text-slate-900 text-lg pr-4">{faq.question}</span>
-                                    <ChevronDown
-                                        className={`w-5 h-5 text-slate-600 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''
-                                            }`}
-                                    />
-                                </button>
-                                {openFaq === i && (
-                                    <div className="px-6 pb-6">
-                                        <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                        <div className="w-full md:w-1/2 relative">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-3xl transform rotate-3 scale-105 opacity-20"></div>
+                            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-2xl relative">
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100 opacity-50">
+                                        <span className="font-medium text-red-800">Typical Website</span>
+                                        <span className="text-sm text-red-600">Confusing, Slow, No Calls</span>
                                     </div>
-                                )}
+                                    <div className="flex items-center justify-between p-6 bg-green-50 rounded-lg border border-green-200 shadow-sm scale-110">
+                                        <span className="font-bold text-green-900 flex items-center gap-2"><Zap className="w-5 h-5" /> Our Website</span>
+                                        <span className="text-sm font-bold text-green-700">Clear, Fast, High Calls</span>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 🔟 FINAL CTA */}
+            {/* 🟢 SECTION 8: PHILOSOPHY (WHY US) */}
             <section className="py-24 bg-slate-900 text-white">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                            Ready to Stop Losing Leads?
-                        </h2>
-                        <p className="text-xl text-slate-300 mb-10">
-                            Book a free strategy call. We'll show you exactly how automation can transform your business.
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">More Than Just Pixel Pushing</h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+                            We don't just build websites; we build assets that grow your business.
                         </p>
+                    </div>
 
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="inline-flex items-center gap-2 bg-blue-600 text-white px-10 py-5 rounded-lg font-bold text-xl hover:bg-blue-700 transition-all shadow-2xl shadow-blue-600/20 hover:shadow-blue-600/40 mb-6"
-                        >
-                            Book Your Free Strategy Call <ArrowRight className="w-6 h-6" />
-                        </button>
-
-                        <p className="text-slate-400">
-                            ✓ No obligation · ✓ 20–30 minutes · ✓ Clear next steps
-                        </p>
-
-                        <div className="mt-12 pt-12 border-t border-slate-800">
-                            <p className="text-slate-500 text-sm">
-                                © 2026 CYBKART GLOBAL. Built for US businesses serious about growth.
+                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors">
+                            <div className="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6 text-blue-400">
+                                <TrendingUp className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3">Conversion Obsessed</h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                Every pixel is placed with one goal: turning a visitor into a paying customer. No fluff, just results.
+                            </p>
+                        </div>
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6 text-purple-400">
+                                <Zap className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3">Blazing Fast Speed</h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                We optimize for 90+ Google PageSpeed scores. Fast sites rank better and sell more. Period.
+                            </p>
+                        </div>
+                        <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors">
+                            <div className="w-12 h-12 bg-emerald-900/50 rounded-lg flex items-center justify-center mb-6 text-emerald-400">
+                                <ShieldCheck className="w-6 h-6" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-3">Built to Scale</h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                Your business will grow, and your website should too. Our systems are built on Next.js for infinite scalability.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
-        </>
+
+            {/* 🟢 SECTION 9: FINAL CTA (CLOSE THE LOOP) */}
+            <section className="py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white text-center">
+                <div className="container mx-auto px-6">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-8">
+                        Ready to See Your Website Before You Decide?
+                    </h2>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <button
+                            onClick={scrollToDemos}
+                            className="w-full sm:w-auto px-10 py-5 bg-white text-blue-700 text-xl font-bold rounded-xl hover:bg-blue-50 transition-all shadow-2xl cursor-pointer"
+                        >
+                            👉 See Demo Website
+                        </button>
+                        <button
+                            onClick={() => setIsBookingModalOpen(true)}
+                            className="w-full sm:w-auto px-10 py-5 bg-blue-800 text-white border border-blue-400/30 text-xl font-bold rounded-xl hover:bg-blue-900 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                            <Calendar className="w-6 h-6" /> Book Strategy Call
+                        </button>
+                    </div>
+
+                    <div className="mt-12 text-blue-200/60 text-sm">
+                        © {new Date().getFullYear()} Cybkart Global. All rights reserved.
+                    </div>
+                </div>
+            </section>
+            <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
+        </div>
     );
 }

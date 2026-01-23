@@ -4,11 +4,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import BookingModal from './BookingModal';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [servicesOpen, setServicesOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Check pathname to hide header on landing page
+    const pathname = usePathname();
+
+    // Do not render global header on the landing page
+    if (pathname?.startsWith('/cybkart-global')) return null;
+
 
     const services = [
         { name: 'AI Automation & Chatbot Systems', href: '/services/ai-automation' },
@@ -25,13 +33,8 @@ export default function Header() {
                 <nav className="container mx-auto px-6">
                     <div className="flex items-center justify-between h-20">
                         {/* Logo */}
-                        <Link href="/" className="flex items-center space-x-2 group">
-                            <div className="w-10 h-10 bg-[#0F172A] rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
-                                <span className="text-white font-bold text-xl">CK</span>
-                            </div>
-                            <span className="text-2xl font-bold text-slate-900 tracking-tight">
-                                CYBKART <span className="text-blue-600">GLOBAL</span>
-                            </span>
+                        <Link href="/" className="flex items-center space-x-2 group bg-slate-900 px-3 py-1.5 rounded-lg shadow-sm hover:bg-slate-800 transition-colors">
+                            <img src="/images/logo.png" alt="CYBKART Global" className="h-12 w-auto" />
                         </Link>
 
                         {/* Desktop Navigation */}

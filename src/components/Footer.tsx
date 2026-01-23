@@ -1,8 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const pathname = usePathname();
+
+    // Do not render footer on landing page
+    if (pathname?.startsWith('/cybkart-global')) return null;
 
     return (
         <footer className="bg-[#0F172A] text-slate-400 border-t border-slate-800">
@@ -11,12 +18,7 @@ export default function Footer() {
                     {/* Company Info */}
                     <div>
                         <div className="flex items-center space-x-2 mb-6 group">
-                            <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 border border-slate-700">
-                                <span className="text-white font-bold text-xl">CK</span>
-                            </div>
-                            <span className="text-xl font-bold text-white tracking-tight">
-                                CYBKART <span className="text-blue-500">GLOBAL</span>
-                            </span>
+                            <img src="/images/logo.png" alt="CYBKART Global" className="h-14 w-auto" />
                         </div>
                         <p className="mb-6 leading-relaxed text-sm text-slate-400">
                             Enterprise-grade digital systems for high-growth businesses. We architect the AI, automation, and web infrastructure that powers the future of work.

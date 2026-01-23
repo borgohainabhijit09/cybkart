@@ -5,14 +5,14 @@
     --background: 255 255 255;
     --foreground: 15 23 42;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-white text-slate-900 antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig"1, "calt"1;
   }
 }
 
@@ -21,7 +21,8 @@
   width: 100%;
   max-width: 1170px;
   margin-inline: auto;
-  padding-inline: 1.5rem; /* px-6 equivalent default for safety */
+  padding-inline: 1.5rem;
+  /* px-6 equivalent default for safety */
 }
 
 @utility glass-panel {
@@ -36,6 +37,41 @@
       opacity: 0;
       transform: translateY(-10px);
     }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-blob: blob 7s infinite;
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -50,7 +86,7 @@
 @utility dark-grid-bg {
   background-size: 40px 40px;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 @utility gradient-text {
@@ -59,4 +95,12 @@
 
 @utility gradient-text-light {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-200;
+}
+
+@utility animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+@utility animation-delay-4000 {
+  animation-delay: 4s;
 }
