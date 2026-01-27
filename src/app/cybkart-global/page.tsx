@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
     Phone,
     ArrowRight,
@@ -25,7 +25,9 @@ import {
     DollarSign,
     Calendar,
     Star,
-    MessageCircle
+    MessageCircle,
+    ChevronLeft,
+    ChevronRight
 } from 'lucide-react';
 import Link from 'next/link';
 import BookingModal from '@/components/BookingModal';
@@ -34,6 +36,58 @@ export default function CybkartGlobalLanding() {
     const [demosClicked, setDemosClicked] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    const reviews = [
+        {
+            name: "Jason M.",
+            role: "HVAC Business Owner",
+            text: "Honestly blown away. We paid a local agency $3k for a site that took 2 months. Cybkart got our new landing page up in 4 days and it looks 10x better. Calls started coming in the next week.",
+            initial: "J",
+            color: "bg-blue-100 text-blue-600",
+            time: "2 weeks ago"
+        },
+        {
+            name: "Sarah Jenkins",
+            role: "Dental Clinic Manager",
+            text: "The 'No Monthly Retainer' promise is real. They built the site, handed over the keys, and showed me how to make edits myself. Exactly what a small business needs.",
+            initial: "S",
+            color: "bg-purple-100 text-purple-600",
+            time: "1 month ago"
+        },
+        {
+            name: "Mike T.",
+            role: "Roofing Contractor",
+            text: "We used to lose so many leads because our old site wasn't mobile friendly. The new design is super fast on phones and the 'Book Now' button is converting like crazy. Highly recommend.",
+            initial: "M",
+            color: "bg-emerald-100 text-emerald-600",
+            time: "3 days ago"
+        },
+        {
+            name: "Emily R.",
+            role: "Boutique Owner",
+            text: "I was skeptical about the 5-day delivery, but they actually delivered early. The design is clean, elegant, and matches my brand perfectly. My online sales have already increased.",
+            initial: "E",
+            color: "bg-pink-100 text-pink-600",
+            time: "1 week ago"
+        },
+        {
+            name: "David K.",
+            role: "Financial Consultant",
+            text: "Professional, sleep, and effective. The Google Review integration and booking system they added saved me hours of manual admin work. Worth every penny.",
+            initial: "D",
+            color: "bg-amber-100 text-amber-600",
+            time: "2 months ago"
+        }
+    ];
+
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollRef.current) {
+            const { current } = scrollRef;
+            const scrollAmount = direction === 'left' ? -350 : 350;
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     const scrollToDemos = () => {
         const element = document.getElementById('demo-section');
@@ -579,98 +633,75 @@ export default function CybkartGlobalLanding() {
                 </div>
             </section>
 
-            {/* 🟢 SECTION 8.5: TESTIMONIALS (SOCIAL PROOF) */}
-            <section className="py-24 bg-slate-50">
+            {/* 🟢 SECTION 8.5: TESTIMONIALS (SOCIAL PROOF CAROUSEL) */}
+            <section className="py-24 bg-slate-50 overflow-hidden">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-12">
                         <h2 className="text-4xl font-bold text-slate-900 mb-4">Don't Just Take Our Word For It</h2>
-                        <div className="flex items-center justify-center gap-2 mb-4">
-                            <span className="text-xl font-bold text-slate-700">5.0</span>
-                            <div className="flex text-amber-400">
-                                <Star className="w-5 h-5 fill-current" />
-                                <Star className="w-5 h-5 fill-current" />
-                                <Star className="w-5 h-5 fill-current" />
-                                <Star className="w-5 h-5 fill-current" />
-                                <Star className="w-5 h-5 fill-current" />
+                        <div className="flex items-center justify-center gap-3 mb-4">
+                            <span className="text-3xl font-bold text-slate-900">4.8</span>
+                            <div className="flex flex-col items-start">
+                                <div className="flex text-amber-400">
+                                    <Star className="w-5 h-5 fill-current" />
+                                    <Star className="w-5 h-5 fill-current" />
+                                    <Star className="w-5 h-5 fill-current" />
+                                    <Star className="w-5 h-5 fill-current" />
+                                    <Star className="w-5 h-5 fill-current text-amber-400/30" />
+                                </div>
+                                <span className="text-slate-500 text-xs font-medium">Average Client Rating</span>
                             </div>
-                            <span className="text-slate-500 text-sm">(Based on client feedback)</span>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                        {/* Review 1 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">
-                                    J
-                                </div>
-                                <div>
-                                    <div className="font-bold text-slate-900">Jason M.</div>
-                                    <div className="text-slate-500 text-xs flex items-center gap-1">
-                                        <div className="flex text-amber-400">
-                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
-                                        </div>
-                                        <span>2 weeks ago</span>
-                                    </div>
-                                </div>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
-                            </div>
-                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
-                                "Honestly blown away. We paid a local agency $3k for a site that took 2 months. Cybkart got our new landing page up in 4 days and it looks 10x better. Calls started coming in the next week."
-                            </p>
-                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
-                                Project: HVAC Landing Page
-                            </div>
-                        </div>
+                    <div className="relative max-w-7xl mx-auto">
+                        {/* Navigation Buttons */}
+                        <button
+                            onClick={() => scroll('left')}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:scale-110 transition-all hidden md:flex cursor-pointer"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button
+                            onClick={() => scroll('right')}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:scale-110 transition-all hidden md:flex cursor-pointer"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
 
-                        {/* Review 2 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xl">
-                                    S
-                                </div>
-                                <div>
-                                    <div className="font-bold text-slate-900">Sarah Jenkins</div>
-                                    <div className="text-slate-500 text-xs flex items-center gap-1">
-                                        <div className="flex text-amber-400">
-                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                        {/* Carousel Track */}
+                        <div
+                            ref={scrollRef}
+                            className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide px-4"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                            {reviews.map((review, i) => (
+                                <div
+                                    key={i}
+                                    className="min-w-[300px] md:min-w-[350px] bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col snap-center transform hover:-translate-y-1 transition-transform duration-300"
+                                >
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <div className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center font-bold text-xl`}>
+                                            {review.initial}
                                         </div>
-                                        <span>1 month ago</span>
+                                        <div>
+                                            <div className="font-bold text-slate-900">{review.name}</div>
+                                            <div className="text-slate-500 text-xs flex items-center gap-1">
+                                                <div className="flex text-amber-400">
+                                                    {[...Array(5)].map((_, starI) => <Star key={starI} className="w-3 h-3 fill-current" />)}
+                                                </div>
+                                                <span>{review.time}</span>
+                                            </div>
+                                        </div>
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
+                                    </div>
+                                    <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow text-sm md:text-base">
+                                        "{review.text}"
+                                    </p>
+                                    <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
+                                        {review.role}
                                     </div>
                                 </div>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
-                            </div>
-                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
-                                "The 'No Monthly Retainer' promise is real. They built the site, handed over the keys, and showed me how to make edits myself. Exactly what a small business needs."
-                            </p>
-                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
-                                Project: Dental Clinic Website
-                            </div>
-                        </div>
-
-                        {/* Review 3 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xl">
-                                    M
-                                </div>
-                                <div>
-                                    <div className="font-bold text-slate-900">Mike T.</div>
-                                    <div className="text-slate-500 text-xs flex items-center gap-1">
-                                        <div className="flex text-amber-400">
-                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
-                                        </div>
-                                        <span>3 days ago</span>
-                                    </div>
-                                </div>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
-                            </div>
-                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
-                                "We used to lose so many leads because our old site wasn't mobile friendly. The new design is super fast on phones and the 'Book Now' button is converting like crazy. Highly recommend."
-                            </p>
-                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
-                                Project: Roofing Services Site
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
