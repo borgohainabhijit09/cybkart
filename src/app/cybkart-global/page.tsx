@@ -260,6 +260,13 @@ export default function CybkartGlobalLanding() {
                                         <span className="text-emerald-800/80">Companies relying on referrals & local Google search</span>
                                     </div>
                                 </li>
+                                <li className="flex items-start gap-4">
+                                    <div className="w-6 h-6 rounded-full bg-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-xs mt-0.5">✓</div>
+                                    <div>
+                                        <span className="font-bold text-slate-900 block text-lg">E-commerce & Retail</span>
+                                        <span className="text-emerald-800/80">Online stores, boutiques, product catalogs</span>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
 
@@ -278,10 +285,7 @@ export default function CybkartGlobalLanding() {
                                     <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xs">✕</div>
                                     <span className="text-lg">Large enterprise portals</span>
                                 </li>
-                                <li className="flex items-center gap-4 text-slate-600">
-                                    <div className="w-6 h-6 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-xs">✕</div>
-                                    <span className="text-lg">Complex e-commerce stores (for now)</span>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -503,7 +507,7 @@ export default function CybkartGlobalLanding() {
                                     'Built for real businesses, not templates',
                                     'Designed to turn visitors into callers',
                                     'No long forms, no distractions',
-                                    'Optimized for Google & mobile users'
+                                    'Optimized for Google, Tablet and Mobile users'
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
