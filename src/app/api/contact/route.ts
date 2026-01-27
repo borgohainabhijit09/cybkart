@@ -49,7 +49,7 @@ export async function POST(req: Request) {
             <p><strong>Business Name:</strong> ${businessName}</p>
             <p><strong>Business Type:</strong> ${businessType}</p>
             <p><strong>Location:</strong> ${location}</p>
-            <p><strong>Budget Confirmed:</strong> ${budgetConfirmed ? 'Yes ($999 - $2,500)' : 'No'}</p>
+            <p><strong>Budget Confirmed:</strong> ${budgetConfirmed ? 'Yes ($499 - $2,500)' : 'No'}</p>
           </div>
 
           <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 20px;">

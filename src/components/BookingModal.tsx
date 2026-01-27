@@ -217,7 +217,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                     checked={formData.budgetConfirmed}
                                     onChange={(e) => setFormData({ ...formData, budgetConfirmed: e.target.checked })}
                                 />
-                                <span className="text-sm font-medium text-slate-700">My budget is around $999 – $2,500</span>
+                                <span className="text-sm font-medium text-slate-700">My budget is around $499 – $2,500</span>
                             </label>
 
                             {errorMessage && (
