@@ -8,6 +8,7 @@ interface BookingModalProps {
     onClose: () => void;
 }
 
+// Budget updated to $499
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
     const [formData, setFormData] = useState({
         businessName: '',
