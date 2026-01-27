@@ -114,6 +114,12 @@ export default function CybkartGlobalLanding() {
                         <a href="tel:8446991255" className="font-semibold text-slate-600 hover:text-blue-600 transition-colors cursor-pointer">
                             844-699-1255 (Toll Free)
                         </a>
+                        <Link
+                            href="/services"
+                            className="px-5 py-2.5 rounded-lg font-semibold text-slate-700 bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-500 hover:text-blue-600 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                        >
+                            Our Services
+                        </Link>
                         <button
                             onClick={scrollToDemos}
                             className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 cursor-pointer"
