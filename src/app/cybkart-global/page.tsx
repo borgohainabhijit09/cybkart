@@ -143,6 +143,13 @@ export default function CybkartGlobalLanding() {
                         <a href="tel:8446991255" className="block w-full text-center py-3 bg-slate-100 rounded-lg font-bold text-slate-800 cursor-pointer flex items-center justify-center gap-2">
                             <Phone className="w-4 h-4" /> Call 844-699-1255
                         </a>
+                        <Link
+                            href="/services"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block w-full py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-bold shadow-sm cursor-pointer flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
+                        >
+                            <Briefcase className="w-4 h-4" /> Our Services
+                        </Link>
                         <button
                             onClick={() => { setIsBookingModalOpen(true); setMobileMenuOpen(false); }}
                             className="block w-full py-3 bg-emerald-600 text-white rounded-lg font-bold shadow-lg cursor-pointer flex items-center justify-center gap-2"
