@@ -123,7 +123,7 @@ export default function CybkartGlobalLanding() {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-                        Stop losing leads to outdated designs. We build professional, high-converting websites for service businesses in <span className="text-slate-900 font-bold underline decoration-blue-400/50 decoration-4 underline-offset-4">7 days or less.</span>
+                        Stop losing leads to outdated designs. We build professional, high-converting websites for service businesses in <span className="text-slate-900 font-bold underline decoration-blue-400/50 decoration-4 underline-offset-4">5 Business Days.</span>
                         <span className="block mt-4 text-blue-600 font-bold bg-blue-50/50 inline-block px-4 py-1 rounded-full border border-blue-100">
                             ✨ Packages starting at just $499
                         </span>
