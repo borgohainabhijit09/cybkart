@@ -41,11 +41,36 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         };
     }, [isOpen]);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would typically send data to an API
-        console.log('Form submitted:', formData);
-        setIsSubmitted(true);
+        setIsSubmitting(true);
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to submit form');
+            }
+
+            // Success
+            setIsSubmitted(true);
+        } catch (error) {
+            console.error('Submission error:', error);
+            setErrorMessage('Something went wrong. Please try again or call us directly.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!isOpen) return null;
@@ -195,14 +220,31 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                                 <span className="text-sm font-medium text-slate-700">My budget is around $999 – $2,500</span>
                             </label>
 
+                            {errorMessage && (
+                                <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100 mb-4">
+                                    {errorMessage}
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
-                                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+                                disabled={isSubmitting}
+                                className={`w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.02] active:scale-[0.98]'}`}
                             >
-                                👉 Show Me My Website Options
+                                {isSubmitting ? (
+                                    <>
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Sending...
+                                    </>
+                                ) : (
+                                    '👉 Show Me My Website Options'
+                                )}
                             </button>
 
-                            <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
+                            <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mt-4">
                                 <Lock className="w-3 h-3" /> No spam. No obligation. Just clear next steps.
                             </div>
                         </form>
