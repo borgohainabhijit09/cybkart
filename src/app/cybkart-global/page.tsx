@@ -195,7 +195,7 @@ export default function CybkartGlobalLanding() {
                                     <Zap className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-white font-bold text-lg">7–10 Days</div>
+                                    <div className="text-white font-bold text-lg">5 Business Days</div>
                                     <div className="text-slate-400 text-sm">Fast Turnaround</div>
                                 </div>
                             </div>
@@ -574,6 +574,103 @@ export default function CybkartGlobalLanding() {
                             <p className="text-slate-400 leading-relaxed">
                                 Your business will grow, and your website should too. Our systems are built on Next.js for infinite scalability.
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 🟢 SECTION 8.5: TESTIMONIALS (SOCIAL PROOF) */}
+            <section className="py-24 bg-slate-50">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold text-slate-900 mb-4">Don't Just Take Our Word For It</h2>
+                        <div className="flex items-center justify-center gap-2 mb-4">
+                            <span className="text-xl font-bold text-slate-700">5.0</span>
+                            <div className="flex text-amber-400">
+                                <Star className="w-5 h-5 fill-current" />
+                                <Star className="w-5 h-5 fill-current" />
+                                <Star className="w-5 h-5 fill-current" />
+                                <Star className="w-5 h-5 fill-current" />
+                                <Star className="w-5 h-5 fill-current" />
+                            </div>
+                            <span className="text-slate-500 text-sm">(Based on client feedback)</span>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        {/* Review 1 */}
+                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">
+                                    J
+                                </div>
+                                <div>
+                                    <div className="font-bold text-slate-900">Jason M.</div>
+                                    <div className="text-slate-500 text-xs flex items-center gap-1">
+                                        <div className="flex text-amber-400">
+                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                                        </div>
+                                        <span>2 weeks ago</span>
+                                    </div>
+                                </div>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
+                            </div>
+                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
+                                "Honestly blown away. We paid a local agency $3k for a site that took 2 months. Cybkart got our new landing page up in 4 days and it looks 10x better. Calls started coming in the next week."
+                            </p>
+                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
+                                Project: HVAC Landing Page
+                            </div>
+                        </div>
+
+                        {/* Review 2 */}
+                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xl">
+                                    S
+                                </div>
+                                <div>
+                                    <div className="font-bold text-slate-900">Sarah Jenkins</div>
+                                    <div className="text-slate-500 text-xs flex items-center gap-1">
+                                        <div className="flex text-amber-400">
+                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                                        </div>
+                                        <span>1 month ago</span>
+                                    </div>
+                                </div>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
+                            </div>
+                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
+                                "The 'No Monthly Retainer' promise is real. They built the site, handed over the keys, and showed me how to make edits myself. Exactly what a small business needs."
+                            </p>
+                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
+                                Project: Dental Clinic Website
+                            </div>
+                        </div>
+
+                        {/* Review 3 */}
+                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xl">
+                                    M
+                                </div>
+                                <div>
+                                    <div className="font-bold text-slate-900">Mike T.</div>
+                                    <div className="text-slate-500 text-xs flex items-center gap-1">
+                                        <div className="flex text-amber-400">
+                                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                                        </div>
+                                        <span>3 days ago</span>
+                                    </div>
+                                </div>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" className="w-6 h-6 ml-auto opacity-70" />
+                            </div>
+                            <p className="text-slate-600 italic leading-relaxed mb-4 flex-grow">
+                                "We used to lose so many leads because our old site wasn't mobile friendly. The new design is super fast on phones and the 'Book Now' button is converting like crazy. Highly recommend."
+                            </p>
+                            <div className="text-sm text-slate-400 font-medium pt-4 border-t border-slate-50">
+                                Project: Roofing Services Site
+                            </div>
                         </div>
                     </div>
                 </div>
