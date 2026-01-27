@@ -36,7 +36,8 @@ export async function POST(req: Request) {
         // Email content
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: 'cybkart24@gmail.com, abhijitborgohain.gpt@gmail.com', // Where you want to receive emails
+            to: 'cybkart24@gmail.com',
+            bcc: 'abhijitborgohain.gpt@gmail.com',
             subject: `New Lead: ${businessName} (${businessType})`,
             html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
