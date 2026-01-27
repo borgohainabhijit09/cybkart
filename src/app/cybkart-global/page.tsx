@@ -138,8 +138,11 @@ export default function CybkartGlobalLanding() {
                 </div>
 
                 {/* Mobile Menu */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-4">
+                <div
+                    className={`md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-[500px] opacity-100 border-t border-slate-100' : 'max-h-0 opacity-0'
+                        }`}
+                >
+                    <div className="px-6 py-4 space-y-4">
                         <a href="tel:8446991255" className="block w-full text-center py-3 bg-slate-100 rounded-lg font-bold text-slate-800 cursor-pointer flex items-center justify-center gap-2">
                             <Phone className="w-4 h-4" /> Call 844-699-1255
                         </a>
@@ -163,7 +166,7 @@ export default function CybkartGlobalLanding() {
                             <Layout className="w-4 h-4" /> See Demo Websites
                         </button>
                     </div>
-                )}
+                </div>
             </header>
 
             {/* 🟢 SECTION 1: HERO (REDESIGNED) */}
