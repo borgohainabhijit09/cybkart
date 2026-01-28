@@ -2,6 +2,7 @@
 
 import { X, Phone, MessageCircle, Mail, Lock, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -20,6 +21,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
         budgetConfirmed: false
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if (isOpen) {
@@ -65,7 +67,8 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             }
 
             // Success
-            setIsSubmitted(true);
+            // setIsSubmitted(true);
+            router.push('/thankyou');
         } catch (error) {
             console.error('Submission error:', error);
             setErrorMessage('Something went wrong. Please try again or call us directly.');
