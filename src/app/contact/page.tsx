@@ -12,11 +12,11 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Start Your Project - Contact Architects | CYBKART GLOBAL',
-    description: 'Book a discovery call with our systems architects. No sales fluff, just technical planning. Get a response from a senior partner within 24 hours.',
+    title: 'Start Your Partnership - Contact | CYBKART GLOBAL',
+    description: 'Book a discovery call to discuss a white-label partnership, pricing, or dedicated retainer capacity.',
     openGraph: {
-        title: 'Start Your Project - Contact Architects | CYBKART GLOBAL',
-        description: 'Book a discovery call with our systems architects. No sales fluff, just technical planning.',
+        title: 'Start Your Partnership - Contact | CYBKART GLOBAL',
+        description: 'Book a discovery call to discuss a white-label partnership, pricing, or dedicated retainer capacity.',
         url: 'https://cybkartglobal.com/contact',
         siteName: 'CYBKART GLOBAL',
         locale: 'en_US',
