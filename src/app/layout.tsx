@@ -25,20 +25,11 @@ export const metadata: Metadata = {
     siteName: "CybKart Global",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: 'https://cybkartglobal.com/images/hero-img.png',
-        width: 1200,
-        height: 630,
-        alt: 'CybKart Global - White-Label Agency Partner',
-      }
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "White-Label Web Development for Marketing Agencies | CybKart Global",
     description: "CybKart Global is a white-label web development & AI-automation partner for marketing agencies. You keep the client — we build, host, and maintain under your brand. Live sites in 3-5 days.",
-    images: ['https://cybkartglobal.com/images/hero-img.png'],
   },
   robots: {
     index: true,
